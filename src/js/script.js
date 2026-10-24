@@ -9,3 +9,13 @@ botao.addEventListener("click", function () {
         botao.textContent = "Modo escuro";
     }
 });
+
+containerCards.addEventListener("click", function(evento) {
+    if (evento.target.classList.contains("btn-comprar")) {
+        const card = evento.target.closest(".card-livro");
+        const titulo = card.querySelector("h3").innerText;
+        
+        alert(`O livro "${titulo}" foi adicionado ao seu carrinho!`);
+    }
+});
+
