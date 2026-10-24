@@ -19,3 +19,28 @@ containerCards.addEventListener("click", function(evento) {
     }
 });
 
+const inputPesquisa = document.getElementById("input-pesquisa");
+const btnPesquisa = document.getElementById("btn-pesquisa");
+
+function filtrarLivros() {
+    const termoDigitado = inputPesquisa.value.toLowerCase();
+    const todosOsCards = containerCards.querySelectorAll(".card-livro");
+
+    todosOsCards.forEach(card => {
+        const tituloCard = card.querySelector("h3").innerText.toLowerCase();
+        
+        if (tituloCard.includes(termoDigitado)) {
+            card.style.display = "flex";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+btnPesquisa.addEventListener("click", filtrarLivros);
+
+inputPesquisa.addEventListener("keypress", function(evento) {
+    if (evento.key === "Enter") {
+        filtrarLivros();
+    }
+});
