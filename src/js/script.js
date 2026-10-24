@@ -44,3 +44,35 @@ inputPesquisa.addEventListener("keypress", function(evento) {
         filtrarLivros();
     }
 });
+
+function criarContadorDeResultados() {
+    const divResultado = document.createElement("div");
+    divResultado.id = "resultado"; 
+    divResultado.innerText = `Mostrando ${livros.length} livro(s)`;
+
+    const main = document.querySelector("main");
+    main.insertBefore(divResultado, containerCards);
+
+    inputPesquisa.addEventListener("keyup", function() {
+        const termoDigitado = inputPesquisa.value.toLowerCase();
+        let quantidadeVisivel = 0;
+        const todosOsCards = containerCards.querySelectorAll(".card-livro");
+
+        todosOsCards.forEach(card => {
+            const tituloCard = card.querySelector("h3").innerText.toLowerCase();
+            if (tituloCard.includes(termoDigitado)) {
+                quantidadeVisivel++;
+            }
+        });
+
+        if (quantidadeVisivel === 0) {
+            divResultado.innerText = "Nenhum livro encontrado.";
+            divResultado.style.color = "red";
+        } else {
+            divResultado.innerText = `Mostrando ${quantidadeVisivel} livro(s)`;
+            divResultado.style.color = "";
+        }
+    });
+}
+
+criarContadorDeResultados();
