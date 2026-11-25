@@ -1,35 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore o catálogo do Mercado Livro e encontre sua próxima leitura.">
+    <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="./src/css/estilo.css">
-    <title>Mercado Livro</title>
+    <title>Mercado Livro | Sua próxima história</title>
+    <script src="./src/js/script.js" defer></script>
 </head>
 <body>
-    
+    <a class="pular-conteudo" href="#catalogo">Pular para o catálogo</a>
     <header>
-        <h1>Mercado<span>Livro</span></h1>
-        
-        <!-- Barra de pesquisa que você estilizou -->
-        <div class="pesquisa">
-            <input type="text" id="input-pesquisa" placeholder="Pesquisar livros...">
-            <button id="btn-pesquisa">🔍</button>
-        </div>
-
-        <button id="tema">Modo escuro</button>
+        <a class="marca" href="#inicio" aria-label="Mercado Livro, início">
+            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 8C11 4 6 5 3 6v20c5-2 9-1 13 2 4-3 8-4 13-2V6c-3-1-8-2-13 2Zm0 0v20" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            Mercado<span>Livro</span>
+        </a>
+        <form class="pesquisa" role="search">
+            <label class="sr-only" for="input-pesquisa">Pesquisar por título ou autor</label>
+            <input type="search" id="input-pesquisa" placeholder="Qual será sua próxima leitura?" autocomplete="off">
+            <button id="btn-pesquisa" type="submit" aria-label="Pesquisar livros"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button>
+        </form>
+        <button id="tema" type="button" aria-pressed="false">Modo escuro</button>
     </header>
-
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Sobre</a>
-        <a href="#">Contato</a>
+    <nav aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
     </nav>
-
-    <main>
-        <section id="container-cards"></section>
+    <main id="inicio">
+        <section class="hero" aria-labelledby="titulo-principal">
+            <div class="hero-texto">
+                <p class="sobretitulo">PARA QUEM AMA UMA BOA HISTÓRIA</p>
+                <h1 id="titulo-principal">O próximo capítulo<br>começa <em>aqui.</em></h1>
+                <p>Entre clássicos e mundos fantásticos, encontre um livro para chamar de seu.</p>
+                <a class="botao-destaque" href="#catalogo">Explorar o catálogo <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="hero-ilustracao" aria-hidden="true">
+                <span class="orbita"></span>
+                <div class="livro-decorativo livro-um"><span>J. R. R. TOLKIEN</span><strong>O<br>Hobbit</strong><span>UMA NOVA AVENTURA</span></div>
+                <div class="livro-decorativo livro-dois"><span>GEORGE ORWELL</span><strong>1984</strong><span>UM CLÁSSICO ATEMPORAL</span></div>
+                <span class="selo-leitura">Só mais<br><strong>um capítulo.</strong></span>
+            </div>
+        </section>
+        <section class="catalogo" id="catalogo" aria-labelledby="titulo-catalogo">
+            <div class="cabecalho-secao"><div><p class="sobretitulo">SUA ESTANTE PEDE MAIS</p><h2 id="titulo-catalogo">Encontre sua próxima leitura</h2></div><p id="resultado" role="status" aria-live="polite" aria-atomic="true"></p></div>
+            <div id="container-cards"></div>
+            <div id="sem-resultados" hidden><h3>Nenhuma história por aqui… ainda.</h3><p>Tente outro título ou nome de autor.</p><button id="limpar-pesquisa" class="botao-destaque" type="button">Ver todos os livros</button></div>
+        </section>
+        <section class="sobre" id="sobre" aria-labelledby="titulo-sobre"><span class="numero-secao" aria-hidden="true">01 /</span><div><p class="sobretitulo">NOSSA HISTÓRIA</p><h2 id="titulo-sobre">Um lugar para descobrir novos mundos.</h2><p>O Mercado Livro reúne histórias que atravessam gerações. Explore nosso catálogo, descubra autores e encontre inspiração para a sua próxima leitura.</p></div></section>
     </main>
-
-    <script src="./src/js/script.js"></script>
+    <footer id="contato"><div><a class="marca" href="#inicio">Mercado<span>Livro</span></a><p>Boas histórias merecem ser encontradas.</p></div><div><strong>Vamos conversar?</strong><p>Acompanhe o desenvolvimento e entre em contato pelo <a href="https://github.com/MercadoLivro2026/mercadolivro">repositório do projeto</a>.</p><small>Projeto demonstrativo · As compras são simuladas.</small></div></footer>
+    <div id="aviso-carrinho" class="aviso-carrinho" role="status" aria-live="polite" aria-atomic="true"></div>
+    <noscript><p class="noscript">Ative o JavaScript para visualizar o catálogo e pesquisar os livros.</p></noscript>
 </body>
 </html>
